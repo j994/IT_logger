@@ -1,25 +1,23 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Changed hard drive on workstation 005",
-      "attention": false,
-      "date": "03-02-2020",
-      "tech": "Sam Smith"
+      "message": "there was slightly less fire than expected",
+      "tech": "Sara Wilson",
+      "attention": "false",
+      "id": 1
     },
     {
-      "id": 2,
-      "message": "Workstation 007 not posting",
+      "message": "everything is broken",
+      "tech": "John Doe",
       "attention": true,
-      "date": "03-02-2020",
-      "tech": "John Doe"
+      "date": "2020-08-10T12:05:05.709Z",
+      "id": 2
     },
     {
-      "id": 3,
-      "message": "Changed memory on workstation 050",
-      "attention": false,
-      "date": "03-02-2020",
-      "tech": "Sara Wilson"
+      "message": "Turned it off and back on again. Fixed it. Did not actually fix it.",
+      "tech": "Sam Smith",
+      "attention": true,
+      "id": 3
     }
   ],
   "techs": [
@@ -42,6 +40,11 @@
       "firstName": "Thad",
       "lastName": "Castle",
       "id": 3
+    },
+    {
+      "firstName": "Mike",
+      "lastName": "Bee",
+      "id": 5
     }
   ]
 }

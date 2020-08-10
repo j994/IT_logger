@@ -1,16 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateLog, clearCurrent } from "../../redux/actions/logActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const EditLogModal = () => {
+  const current = useSelector((state) => state.log.current);
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState("");
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setTech(current.tech);
+      setAttention(current.attention);
+    }
+  }, [current]);
 
   const onSubmit = () => {
     if (!message || !tech) {
       M.toast({ html: "Please enter a message and tech" });
     } else {
-      console.log(message, tech, attention);
+      const newLog = {
+        message,
+        tech,
+        attention,
+        date: new Date(),
+      };
+
+      dispatch(updateLog(current.id, newLog));
+      dispatch(clearCurrent());
+
+      M.toast({ html: `Log updated by ${tech}` });
 
       // Clear Fields
       setMessage("");
@@ -31,9 +53,6 @@ const EditLogModal = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <label htmlFor='message' className='active'>
-              Log Message
-            </label>
           </div>
         </div>
         <div className='row'>
