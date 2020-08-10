@@ -5,6 +5,7 @@ import M from "materialize-css/dist/js/materialize.min.js";
 
 const EditLogModal = () => {
   const current = useSelector((state) => state.log.current);
+  const techs = useSelector((state) => state.tech.techs);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const [attention, setAttention] = useState(false);
@@ -66,9 +67,14 @@ const EditLogModal = () => {
               <option value='' disabled>
                 Select Technician
               </option>
-              <option value='John Doe'>John Doe</option>
-              <option value='Sam Smith'>Sam Smith</option>
-              <option value='Sara Wilson'>Sara Wilson</option>
+              {techs
+                ? techs.map((tek) => (
+                    <option
+                      key={tek.id}
+                      value={`${tek.firstName} ${tek.lastName}`}
+                    >{`${tek.firstName} ${tek.lastName}`}</option>
+                  ))
+                : null}
             </select>
           </div>
         </div>

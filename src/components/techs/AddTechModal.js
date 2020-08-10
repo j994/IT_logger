@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { useDispatch } from "react-redux";
+import { addTech } from "../../redux/actions/techActions";
 
 const AddTechModal = () => {
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -9,7 +12,12 @@ const AddTechModal = () => {
     if (!firstName || !lastName) {
       M.toast({ html: "Please enter a first and last name" });
     } else {
-      console.log(firstName, lastName);
+      const newTech = {
+        firstName,
+        lastName,
+      };
+
+      dispatch(addTech(newTech));
 
       // Clear Fields
       setFirstName("");

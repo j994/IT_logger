@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addLog } from "../../redux/actions/logActions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
@@ -9,6 +9,7 @@ const AddLogModal = () => {
   const [tech, setTech] = useState("");
 
   const dispatch = useDispatch();
+  const techs = useSelector((state) => state.tech.techs);
 
   const onSubmit = () => {
     if (!message || !tech) {
@@ -60,9 +61,14 @@ const AddLogModal = () => {
               <option value='' disabled>
                 Select Technician
               </option>
-              <option value='John Doe'>John Doe</option>
-              <option value='Sam Smith'>Sam Smith</option>
-              <option value='Sara Wilson'>Sara Wilson</option>
+              {techs
+                ? techs.map((tek) => (
+                    <option
+                      key={tek.id}
+                      value={`${tek.firstName} ${tek.lastName}`}
+                    >{`${tek.firstName} ${tek.lastName}`}</option>
+                  ))
+                : null}
             </select>
           </div>
         </div>
